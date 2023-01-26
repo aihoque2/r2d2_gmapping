@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/ahoque245/workspaces/ros2_ws/install/turtlesim/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/ahoque245/workspaces/ros2_ws/src/r2d2_gmapping/include/**",
+        "/home/ahoque245/workspaces/ros2_ws/src/rl_biped_ros2/eth_biped_sim/include/**",
+        "/home/ahoque245/workspaces/ros2_ws/src/ros_tutorials/turtlesim/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
