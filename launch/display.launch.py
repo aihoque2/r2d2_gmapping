@@ -1,3 +1,4 @@
+
 from ament_index_python.packages import get_package_share_path
 
 from launch import LaunchDescription 
@@ -13,9 +14,6 @@ def generate_launch_description():
     default_model_path = r2d2_file_path / 'urdf/r2d2.urdf'
     default_rviz_config_path = r2d2_file_path / 'rviz/urdf.rviz'
     
-    gui_arg = DeclareLaunchArgument(name='gui', default_value='true', choices=['true', 'false'],
-                                    description='flag to enable joint_state_publisher_gui')
-
     model_arg = DeclareLaunchArgument(name='model', default_value=str(default_model_path), description='path to robot urdf file')
 
     rviz_arg = DeclareLaunchArgument(name='rviz_config', default_value=str(default_rviz_config_path), description='Absolute path to rviz config file')
@@ -26,14 +24,6 @@ def generate_launch_description():
                                     executable='robot_state_publisher',
                                     parameters=[{'robot_description': robot_description}])
 
-    joint_state_publisher_node = Node(package='joint_state_publisher',
-                                      executable='joint_state_publisher',
-                                      condition=UnlessCondition(LaunchConfiguration('gui')))
-    
-    joint_state_publisher_gui_node = Node(package='joint_state_publisher_gui',
-                                         executable='joint_state_publisher_gui',
-                                         condition=IfCondition(LaunchConfiguration('gui')))
-    
     rviz_node = Node(package='rviz2',
                     executable='rviz2',
                     name='rviz2',
@@ -41,11 +31,8 @@ def generate_launch_description():
                     arguments=['-d', LaunchConfiguration('rviz_config')])
     
     return LaunchDescription([
-        gui_arg,
         model_arg,
         rviz_arg,
-        joint_state_publisher_node,
-        joint_state_publisher_gui_node,
         robot_state_publisher_node,
         rviz_node
     ])
